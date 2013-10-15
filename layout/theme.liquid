@@ -1,0 +1,24 @@
+{{ 'mangled.css.scss' | asset_url | stylesheet_tag }}
+{% include 'tricky3-popup-signup.liquid' %}
+{{ 'jquery.campaignmonitorpopup.js' | asset_url | script_tag }}
+<script type="text/javascript">
+  {% if template == 'cart' %}
+    var showPopupOnThisPage = false;
+  {% else %}
+    var showPopupOnThisPage = true;
+  {% endif %}
+  $(function(){
+    var options = {
+      {% assign first_visit = settings.modal_signup_first %}
+      {% assign total_visits = settings.modal_signup_total %}
+      Visits:[{{ first_visit }}{% for i in (1..total_visits) %}{% capture next_visit %}{{ first_visit | plus: i }}{% endcapture %},{{ next_visit }}{% endfor %}],
+      Delay:{{ settings.modal_signup_delay_time }},
+      PageViewNumber:{{ settings.modal_signup_page_view }},
+      ShowPopupOnCurrentPage:showPopupOnThisPage,
+      CloseSelectors:['.popupClose'],
+      ShowSelectors:['.popupTrigger'],
+      RedirectOnSubmitSuccess:true
+    };
+    $('.modalHolder').CampaignMonitorPopup(options);
+  });
+</script>

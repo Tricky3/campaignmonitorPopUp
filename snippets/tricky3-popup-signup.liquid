@@ -1,0 +1,22 @@
+<!-- Take your Campaign Monitor subscribe form as generated from within your account: -->
+<!-- [form is t3-modified html5 - copy and paste values for best results:] -->
+<div class="modalHolder">
+  <div class="ycenter">
+    <div class="xcenter">
+      <div class="modal">
+        <form action="http://myaccount.createsend.com/a/b/c/defgh/" method="post" class="subForm">
+          <fieldset>
+            <legend>{{ settings.signup_title }}</legend>
+            <label for="name">Name:</label><br>
+            <input type="text" name="cm-name" id="name"><br>
+            <label for="abcd-efgh">Email:</label><br>
+            <input type="text" name="cm-abcd-efgh" id="abcd-efgh" placeholder="Your Email Address"{% if customer %} value="{{ customer.email }}"{% endif %} required><br>
+            <input type="submit" value="{{ settings.signup_submit_text }}" class="awesome">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- external trigger if you want one on the page -->
+<a href="http://" class="popupTrigger">{{ settings.popup_signup_trigger }}</a>
