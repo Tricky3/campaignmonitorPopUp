@@ -1,5 +1,7 @@
-{{ 'mangled.css.scss' | asset_url | stylesheet_tag }}
-{% include 'tricky3-popup-signup.liquid' %}
+{{ 'mangled.css' | asset_url | stylesheet_tag }}
+{{ 'bvalidator.css' | asset_url | stylesheet_tag }}
+{% include 'tricky3-popup-signup' %}
+{{ 'jquery.bvalidator.js' | asset_url | script_tag }}
 {{ 'jquery.campaignmonitorpopup.js' | asset_url | script_tag }}
 <script type="text/javascript">
   {% if template == 'cart' %}

@@ -58,9 +58,12 @@
             CMP.Hide(true);
           }
         });
+        
+        $('.modal', _MainWrapper).append('<i class="ss-close popupClose"></i>');
       },
       Hide: function (saveCookie) {
-        _MainWrapper.hide('fast');
+        //_MainWrapper.hide('fast');
+        _MainWrapper.removeClass('modalize');
         if (saveCookie) {}
       },
       ReadAndSetupCookieValues: function () {
@@ -146,7 +149,8 @@
       Show: function (clickEvent) {
         var delay = clickEvent ? 1000 : settings.Delay;
         setTimeout(function(){
-          _MainWrapper.show();
+          //_MainWrapper.show();
+          _MainWrapper.addClass('modalize');
           CMP.InitBValidator();
           CMP.InitAjaxSubmit();
         },delay);
