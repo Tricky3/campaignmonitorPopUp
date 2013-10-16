@@ -11,7 +11,8 @@
       ShowPopupOnCurrentPage:false,
       CallBackOnSuccess:null,
       CallBackOnError:null,
-      RedirectOnSubmitSuccess:false
+      RedirectOnSubmitSuccess:false,
+      InnerWrapper:'.modal'
     };
     $.extend(settings, options || {});
     var _VisitingCookieTracker = {
@@ -35,6 +36,8 @@
         this.InitCustomEvents();
       },
       InitCustomEvents: function () {
+        $(settings.InnerWrapper, _MainWrapper).append('<a class="ss-backspace popupClose"></a>');
+        
         for(var i=0;i<settings.CloseSelectors.length;i++){
           var element = $(settings.CloseSelectors[i]);
           element.click(function(e){
@@ -59,7 +62,13 @@
           }
         });
         
-        $('.modal', _MainWrapper).append('<i class="ss-close popupClose"></i>');
+        $("body").click(function(event ){
+            var target = $(event.target);
+            if(!target.parents().is(settings.InnerWrapper) && !target.is(settings.InnerWrapper)){
+                CMP.Hide(true);
+            }
+        });
+        
       },
       Hide: function (saveCookie) {
         //_MainWrapper.hide('fast');
