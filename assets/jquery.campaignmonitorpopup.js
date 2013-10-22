@@ -62,13 +62,16 @@
           }
         });
         
-        $("body").click(function(event ){
-            var target = $(event.target);
-            if(!target.parents().is(settings.InnerWrapper) && !target.is(settings.InnerWrapper)){
-                CMP.Hide(true);
-            }
+        _MainWrapper.click(function(){
+          if($(this).hasClass('modalize')){
+          	CMP.Hide(true);
+          }
         });
         
+        $(settings.InnerWrapper, _MainWrapper).click(function(e){
+           	e.stopPropagation();
+        });
+                
       },
       Hide: function (saveCookie) {
         //_MainWrapper.hide('fast');

@@ -19,8 +19,15 @@
       ShowPopupOnCurrentPage:showPopupOnThisPage,
       CloseSelectors:['.popupClose'],
       ShowSelectors:['.popupTrigger'],
-      RedirectOnSubmitSuccess:true
+	  RedirectOnSubmitSuccess:true,//if this is set to true and url is present in the response data, user will be redirected to the appropriate url.
+	  CallBackOnSuccess:SuccessCallback//the callback function(see below, if you want to further actions to be done after when user has successfully registered).For this to work the RedirectOnSubmitSuccess variable should be set to false above.
     };
     $('.modalHolder').CampaignMonitorPopup(options);
   });
+  
+  //the callback function
+  var SuccessCallback = function(data, wrapper){
+	//alert(data);
+	//....
+  };
 </script>
