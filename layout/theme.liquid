@@ -10,7 +10,7 @@
     {% else %}
       var showPopupOnThisPage = true;
     {% endif %}
-    $(function(){
+    $(window).load(function() {
       var options = {
         {% assign first_visit = settings.modal_signup_first %}
         {% assign total_visits = settings.modal_signup_total %}
@@ -20,17 +20,13 @@
         ShowPopupOnCurrentPage:showPopupOnThisPage,
         CloseSelectors:['.popupClose'],
         ShowSelectors:['.popupTrigger'],
-        RedirectOnSubmitSuccess:true,
-		RedirectOnSubmitSuccess:true,//if this is set to true and url is present in the response data, user will be redirected to the appropriate url.
-	    CallBackOnSuccess:SuccessCallback//the callback function(see below, if you want to further actions to be done after when user has successfully registered).For this to work the RedirectOnSubmitSuccess variable should be set to false above.
+        RedirectOnSubmitSuccess:true, // if this is set to true and url is present in the response data, user will be redirected to the appropriate url.
+        CallBackOnSuccess:SuccessCallback // RedirectOnSubmitSuccess variable above should be set to false to activate this
       };
       $('.modalHolder').CampaignMonitorPopup(options);
     });
-	
-	  //the callback function
-	  var SuccessCallback = function(data, wrapper){
-		//alert(data);
-		//....
-	  };
+    var SuccessCallback = function(data, wrapper){
+      // alert(data);
+    };
   </script>
 {% endunless %}
