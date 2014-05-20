@@ -79,10 +79,10 @@
         if (saveCookie) {}
       },
       ReadAndSetupCookieValues: function () {
-        var sessionCookie = CookieManager.ReadCookie(settings.SessionCookieName);
+        var sessionCookie = T3Core.CookieManager.ReadCookie(settings.SessionCookieName);
         var cmpCookieValue = this.ReadJsonFromCookie(settings.CookieName);
         if (cmpCookieValue == null && sessionCookie == null) {
-          CookieManager.CreateCookie(settings.SessionCookieName, 1);
+          T3Core.CookieManager.CreateCookie(settings.SessionCookieName, 1);
           this.SaveJsonToCookie(settings.CookieName, _CookieValues.ShowOnNextVisit, 1, 1, '', 30);
           cmpCookieValue = this.ReadJsonFromCookie(settings.CookieName);
         }else {
@@ -96,7 +96,7 @@
             var obj = cmpCookieValue;
             var visitNumber = obj.Visits + 1;
             var pageViewNumber = obj.PageView;
-            CookieManager.CreateCookie(settings.SessionCookieName, visitNumber);
+            T3Core.CookieManager.CreateCookie(settings.SessionCookieName, visitNumber);
             if (obj.Status == _CookieValues.ShowOnNextVisit) {
               this.SaveJsonToCookie(settings.CookieName, _CookieValues.ShowOnNextVisit, pageViewNumber, visitNumber, '', 30);
             }
@@ -113,10 +113,10 @@
         if (visitpopupshown != '') {
           _VisitingCookieTracker.PopupAlreadyShownOnVisit.push(visitpopupshown);
         }
-        CookieManager.CreateCookie(cookieName, JSON.stringify(_VisitingCookieTracker), duration);
+        T3Core.CookieManager.CreateCookie(cookieName, JSON.stringify(_VisitingCookieTracker), duration);
       },
       ReadJsonFromCookie: function (cookieName) {
-        var cookieObj = CookieManager.ReadCookie(cookieName);
+        var cookieObj = T3Core.CookieManager.ReadCookie(cookieName);
         var obj = null;
         if (cookieObj != null) {
           try {
@@ -124,7 +124,7 @@
           } catch (e) {
             if (cookieObj.indexOf(_CookieValues.HasSubmitted) != -1) {
               CMP.SaveJsonToCookie(cookieName, _CookieValues.HasSubmitted, '', '', '', 365)
-              obj = JSON.parse(CookieManager.ReadCookie(cookieName));
+              obj = JSON.parse(T3Core.CookieManager.ReadCookie(cookieName));
             }
           }
         }
@@ -211,28 +211,4 @@
   }
 })(jQuery);
 
-//Must be in some shared.js
-var CookieManager = {
-  CreateCookie: function (name, value, days) {
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      var expires = "; expires=" + date.toGMTString();
-    } else var expires = "";
-    document.cookie = name + "=" + value + expires + "; path=/";
-  },
-  ReadCookie: function (name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  },
-  EraseCookie: function (name) {
-    createCookie(name, "", -1);
-  }
-};
 //https://gist.github.com/jdennes/1155479

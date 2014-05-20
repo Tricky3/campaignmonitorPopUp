@@ -3,6 +3,7 @@
   {{ 'bvalidator.css' | asset_url | stylesheet_tag }}
   {% include 'tricky3-popup-signup' %}
   {{ 'jquery.bvalidator.js' | asset_url | script_tag }}
+  {{ 'tricky3.core.js' | asset_url | script_tag }}
   {{ 'jquery.campaignmonitorpopup.js' | asset_url | script_tag }}
   <script type="text/javascript">
     {% if template == 'cart' %}
@@ -11,19 +12,21 @@
       var showPopupOnThisPage = true;
     {% endif %}
     $(window).load(function() {
-      var options = {
-        {% assign first_visit = settings.modal_signup_first %}
-        {% assign total_visits = settings.modal_signup_total %}
-        Visits:[{{ first_visit }}{% for i in (1..total_visits) %}{% capture next_visit %}{{ first_visit | plus: i }}{% endcapture %},{{ next_visit }}{% endfor %}],
-        Delay:{{ settings.modal_signup_delay_time }},
-        PageViewNumber:{{ settings.modal_signup_page_view }},
-        ShowPopupOnCurrentPage:showPopupOnThisPage,
-        CloseSelectors:['.popupClose'],
-        ShowSelectors:['.popupTrigger'],
-        RedirectOnSubmitSuccess:true, // if this is set to true and url is present in the response data, user will be redirected to the appropriate url.
-        CallBackOnSuccess:SuccessCallback // RedirectOnSubmitSuccess variable above should be set to false to activate this
-      };
-      $('.modalHolder').CampaignMonitorPopup(options);
+	if({{ settings.show_popup_on_mobile_device }} || !T3Core.IsMobileDevice()){
+		  var options = {
+			{% assign first_visit = settings.modal_signup_first %}
+			{% assign total_visits = settings.modal_signup_total %}
+			Visits:[{{ first_visit }}{% for i in (1..total_visits) %}{% capture next_visit %}{{ first_visit | plus: i }}{% endcapture %},{{ next_visit }}{% endfor %}],
+			Delay:{{ settings.modal_signup_delay_time }},
+			PageViewNumber:{{ settings.modal_signup_page_view }},
+			ShowPopupOnCurrentPage:showPopupOnThisPage,
+			CloseSelectors:['.popupClose'],
+			ShowSelectors:['.popupTrigger'],
+			RedirectOnSubmitSuccess:true, // if this is set to true and url is present in the response data, user will be redirected to the appropriate url.
+			CallBackOnSuccess:SuccessCallback // RedirectOnSubmitSuccess variable above should be set to false to activate this
+		  };
+		  $('.modalHolder').CampaignMonitorPopup(options);
+	  }
     });
     var SuccessCallback = function(data, wrapper){
       // alert(data);
