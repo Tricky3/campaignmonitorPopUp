@@ -12,7 +12,8 @@
       CallBackOnSuccess:null,
       CallBackOnError:null,
       RedirectOnSubmitSuccess:false,
-      InnerWrapper:'.modal'
+      InnerWrapper:'.modal',
+      SignupKey:'signup'
     };
     $.extend(settings, options || {});
     var _VisitingCookieTracker = {
@@ -203,12 +204,19 @@
       }
     };
     (function () {
-      CMP.Initialize();
+      var signupkey = T3Core.GetQueryStringByKey(settings.SignupKey);
+      if(signupkey != ''){
+        if(signupkey == 1){
+          CMP.Initialize();
+          CMP.Show();
+        }
+      }else{
+        CMP.Initialize();
+      }
     })();
   };
   $.fn.CampaignMonitorPopup = function(options){
     return new CampaignMonitorPopup(this,options);
   }
 })(jQuery);
-
 //https://gist.github.com/jdennes/1155479
