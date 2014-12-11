@@ -187,6 +187,9 @@
           var message = data.Message;
           CMP.SaveJsonToCookie(settings.CookieName,_CookieValues.HasSubmitted,'','','',365);
           if(settings.RedirectOnSubmitSuccess && data.RedirectUrl){
+		    if(settings.CallBackOnSuccess){
+              settings.CallBackOnSuccess(data, _MainWrapper);
+            }
             window.location = data.RedirectUrl;
             return;
           }
