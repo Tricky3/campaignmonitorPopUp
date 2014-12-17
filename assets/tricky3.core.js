@@ -48,9 +48,9 @@ var T3Core = {
 			createCookie(name, "", -1);
 		}
 	},
-	TrackUserSignUp:function(wrapper){
-		var gaCategory = wrapper.attr("data-ga-category");
-		var gaAction = wrapper.attr("data-ga-action");
+	TrackUserSignUp:function(trackingElement){
+		var gaCategory = trackingElement.attr("data-ga-category");
+		var gaAction = trackingElement.attr("data-ga-action");
 		if(typeof(ga) == 'function' && gaCategory && gaAction){
 			ga('send', 'event', gaCategory, gaAction, window.location.href);
 		}
