@@ -1,5 +1,5 @@
 //for the embeds forms to be tracked add the data attributes to the .campaign-monitor-embed-form-wrapper element
-//data-ga-category="UserSignup" data-ga-action="CMEmbedFormFooter"
+//data-ga-category="UserSignup" data-ga-action="CMEmbedForm"
 $(document).ready(function(){
 	$('.campaign-monitor-embed-form-wrapper').each(function(){
 		var wrapper = $(this);
