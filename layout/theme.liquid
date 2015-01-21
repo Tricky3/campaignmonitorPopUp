@@ -23,13 +23,39 @@
 			CloseSelectors:['.popupClose'],
 			ShowSelectors:['.popupTrigger'],
 			RedirectOnSubmitSuccess:true, // if this is set to true and url is present in the response data, user will be redirected to the appropriate url.
-			CallBackOnSuccess:SuccessCallback // RedirectOnSubmitSuccess variable above should be set to false to activate this
+			CallBackOnSuccess:CampaignMonitorCallBack.SuccessCallback // RedirectOnSubmitSuccess variable above should be set to false to activate this
+		    CallBackOnError:CampaignMonitorCallBack.CallBackOnError,
+		    CallBackOnDisplayed:CampaignMonitorCallBack.CallBackOnDisplayed,
+		    CallBackOnClosed:CampaignMonitorCallBack.CallBackOnClosed,
+		    CallBackOnFormSubmitted:CampaignMonitorCallBack.CallBackOnFormSubmitted
 		  };
 		  $('.modalHolder').CampaignMonitorPopup(options);
 	  }
     });
-    var SuccessCallback = function(data, wrapper){
-      T3Core.TrackUserSignUp(wrapper);
-    };
+	
+	var CampaignMonitorTrackers = {
+		Category:"UserSignupCampaignMonitorPopup",
+		Actions:{ Success: "Success", Error:"Error", FormSubmitted:"FormSubmitted", OnShow:"Displayed", ClosedWithoutSignup:"ClosedWithoutSignup"}
+	};
+	
+	var CampaignMonitorCallBack = {
+		SuccessCallback = function(data, wrapper){
+		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.Success, data.Message);
+		},
+		CallBackOnError:function(data){
+		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.Error, data.Message);
+		},
+		CallBackOnDisplayed:function(){
+		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.OnShow);
+		},
+		CallBackOnClosed:function(trackEventIfUserHasNotSignedUp){
+		  if(trackEventIfUserHasNotSignedUp){
+			T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.ClosedWithoutSignup);
+		  }
+		},
+		CallBackOnFormSubmitted:function(){
+		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.FormSubmitted);
+		}
+	};
   </script>
 {% endunless %}

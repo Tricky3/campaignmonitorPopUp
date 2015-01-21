@@ -11,6 +11,9 @@
       ShowPopupOnCurrentPage:false,
       CallBackOnSuccess:null,
       CallBackOnError:null,
+	  CallBackOnDisplayed:null,
+	  CallBackOnClosed:null,
+	  CallBackOnFormSubmitted:null,
       RedirectOnSubmitSuccess:false,
       InnerWrapper:'.modal',
       SignupKey:'signup'
@@ -42,7 +45,7 @@
         for(var i=0;i<settings.CloseSelectors.length;i++){
           var element = $(settings.CloseSelectors[i]);
           element.click(function(e){
-            CMP.Hide();
+            CMP.Hide(true);
             e.stopPropagation();
             return false;
           });
@@ -74,10 +77,12 @@
         });
                 
       },
-      Hide: function (saveCookie) {
+      Hide: function (trackEvent) {
         //_MainWrapper.hide('fast');
         _MainWrapper.removeClass('modalize');
-        if (saveCookie) {}
+        if(settings.CallBackOnClosed){
+			settings.CallBackOnClosed(trackEvent && !CMP.UserHasSignedUp);
+		}
       },
       ReadAndSetupCookieValues: function () {
         var sessionCookie = T3Core.CookieManager.ReadCookie(settings.SessionCookieName);
@@ -164,6 +169,9 @@
         setTimeout(function(){
           //_MainWrapper.show();
           _MainWrapper.addClass('modalize');
+		  if(settings.CallBackOnDisplayed){
+			settings.CallBackOnDisplayed();
+		  }
           CMP.InitBValidator();
           CMP.InitAjaxSubmit();
         },delay);
@@ -177,6 +185,9 @@
           var url = this.action + '?callback=?';
           var formData = _CMPForm.serialize();
           $.getJSON(url,formData,CMP.AjaxFormSubmitCallBack);
+		  if(settings.CallBackOnFormSubmitted){
+			settings.CallBackOnFormSubmitted();
+		  }
           e.stopPropagation();
           return false;
         });
@@ -195,16 +206,18 @@
           }
           if(settings.CallBackOnSuccess){
             settings.CallBackOnSuccess(data, _MainWrapper);
+			CMP.UserHasSignedUp = true;
           }else{
             alert(message);
-            CMP.Hide();
+            CMP.Hide(false);
           }
         }else{
           if(settings.CallBackOnError){
             settings.CallBackOnError(data);
           }
         }
-      }
+      },
+	  UserHasSignedUp:false
     };
     (function () {
       var signupkey = T3Core.GetQueryStringByKey(settings.SignupKey);
