@@ -1,8 +1,23 @@
-campaignmonitorPopUp
-====================
+# Campaign Monitor Modal Popup Signup 
+## Module for Shopify themes
 
-Campaign Monitor / Shopify Modal Signup Popup
+__Includes:__
 
-requires jquery & jquery.bvalidator.js (versions?)
+* Basic styles user-configurable via admin theme settings panel
+  * Modal overlay background color & opacity
+  * Popup background color, border color, and text-align
 
-just sprinkle in some styles for Popup AJAX form!
+* Cookie-based configuration. Be as annoying as you like! Settings for:
+  * Which site visit to display popup
+  * Which page to display on within a visit 
+  * Whether to display once or on multiple visits
+  * Time on target page before popup is displayed
+  * Enable / disable on mobile devices
+  * URL parameters to force enable/disable popup e.g. `yoursite.com/?signup=1`
+
+* Integrated Google Analytics Event-tracking for the following Actions:
+  * "Displayed"
+  * "ClosedWithoutSignup"
+  * "FormSubmitted"
+  * "Success"
+  * "Error"
