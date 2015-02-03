@@ -39,7 +39,7 @@
 	};
 	
 	var CampaignMonitorCallBack = {
-		SuccessCallback = function(data, wrapper){
+		SuccessCallback:function(data, wrapper){
 		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.Success, data.Message);
 		},
 		CallBackOnError:function(data){
