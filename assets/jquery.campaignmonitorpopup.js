@@ -16,7 +16,9 @@
             CallBackOnFormSubmitted: null,
             RedirectOnSubmitSuccess: false,
             InnerWrapper: '.modal',
-            SignupKey: 'signup'
+            SignupKey: 'signup',
+            HidePopupOnSuccess:true,
+            ShowAlertMessage:true
         };
 
         $.extend(settings, options || {});
@@ -204,15 +206,19 @@
                             settings.CallBackOnSuccess(data, _MainWrapper);
                         }
                         window.location = data.RedirectUrl;
-                        return;
-                    }
+                    }else{
+                        if (settings.CallBackOnSuccess) {
+                            settings.CallBackOnSuccess(data, _MainWrapper);
+                        }
 
-                    if (settings.CallBackOnSuccess) {
-                        settings.CallBackOnSuccess(data, _MainWrapper);
-                    }
+                        if(settings.ShowAlertMessage){
+                            alert(message);
+                        }
 
-                    alert(message);
-                    CMP.Hide(false);
+                        if(settings.HidePopupOnSuccess){
+                            CMP.Hide(false);    
+                        }
+                    }
                 } else {
                     if (settings.CallBackOnError) {
                         settings.CallBackOnError(data);
