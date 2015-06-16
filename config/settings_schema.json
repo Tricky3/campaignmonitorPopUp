@@ -11,7 +11,7 @@
       "type": "text",
       "id": "modal_bg_transparency",
       "label": "Modal Overlay Opacity (0-1.0)",
-      "default": 0.75
+      "default": "0.75"
     },
     {
       "type": "select",
@@ -54,26 +54,26 @@
       "type": "select",
       "id": "modal_signup_first",
       "label": "Which Visit to Popup First",
-      "default": 0,
+      "default": "0",
       "options": [
         {
-          "value": 0,
+          "value": "0",
           "label": "0 (inactive)"
         },
         {
-          "value": 1,
+          "value": "1",
           "label": "1st"
         },
         {
-          "value": 2,
+          "value": "2",
           "label": "2nd"
         },
         {
-          "value": 3,
+          "value": "3",
           "label": "3rd"
         },
         {
-          "value": 4,
+          "value": "4",
           "label": "4th"
         }
       ]
@@ -82,46 +82,46 @@
       "type": "select",
       "id": "modal_signup_total",
       "label": "Pop Up on Multiple Visits?",
-      "default": 0,
+      "default": "0",
       "options": [
         {
-          "value": 0,
+          "value": "0",
           "label": "No, just once"
         },
         {
-          "value": 1,
+          "value": "1",
           "label": "twice"
         },
         {
-          "value": 2,
+          "value": "2",
           "label": "three times"
         },
         {
-          "value": 3,
+          "value": "3",
           "label": "four times"
         },
         {
-          "value": 4,
+          "value": "4",
           "label": "five times"
         },
         {
-          "value": 5,
+          "value": "5",
           "label": "six times"
         },
         {
-          "value": 6,
+          "value": "6",
           "label": "seven times"
         },
         {
-          "value": 7,
+          "value": "7",
           "label": "eight times"
         },
         {
-          "value": 8,
+          "value": "8",
           "label": "nine times"
         },
         {
-          "value": 9,
+          "value": "9",
           "label": "ten times"
         }
       ]
@@ -130,22 +130,22 @@
       "type": "select",
       "id": "modal_signup_page_view",
       "label": "Within a visit, which page?",
-      "default": 1,
+      "default": "1",
       "options": [
         {
-          "value": 1,
+          "value": "1",
           "label": "1st page"
         },
         {
-          "value": 2,
+          "value": "2",
           "label": "2nd page"
         },
         {
-          "value": 3,
+          "value": "3",
           "label": "3rd page"
         },
         {
-          "value": 4,
+          "value": "4",
           "label": "4th page"
         }
       ]
@@ -154,20 +154,20 @@
       "type": "text",
       "id": "modal_signup_delay_time",
       "label": "Pop Up Delay Time (milliseconds)",
-      "default": 2000
+      "default": "2000"
     },
     {
       "type": "select",
       "id": "show_popup_on_mobile_device",
       "label": "Show popup on mobile devices",
-      "default": 1,
+      "default": "true",
       "options": [
         {
-          "value": true,
+          "value": "true",
           "label": "Yes"
         },
         {
-          "value": false,
+          "value": "false",
           "label": "No"
         }
       ]
