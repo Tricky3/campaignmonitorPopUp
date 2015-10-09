@@ -6,7 +6,7 @@
   {{ 'tricky3.core.js' | asset_url | script_tag }}
   {{ 'jquery.campaignmonitorpopup.js' | asset_url | script_tag }}
   <script type="text/javascript">
-    {% if template == 'cart' %}
+    {% if customer or template == 'cart' %}
       var showPopupOnThisPage = false;
     {% else %}
       var showPopupOnThisPage = true;
