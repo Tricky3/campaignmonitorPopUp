@@ -1,5 +1,5 @@
 //for the embeds forms to be tracked add the data attributes to the .campaign-monitor-embed-form-wrapper element
-//data-ga-category="UserSignup" data-ga-action="CMEmbedForm"
+//data-ga-category="UserSignup" data-ga-action="CMEmbedForm" data-shopcurrency="{{ shop.currency }}"
 $(document).ready(function(){
 	$('.campaign-monitor-embed-form-wrapper').each(function(){
 		var wrapper = $(this);
@@ -19,6 +19,11 @@ var CampaignMonitorEmbedFormCallBacks = {
 	},
 	Success:function(data, wrapper){
 		T3Core.TrackUserSignUp(wrapper);
+		T3Core.TrackFacebookLeadSignup({
+          currency:  wrapper.attr('data-shopcurrency'), 
+          value: 0.00,
+          content_name: wrapper.attr('data-ga-action')
+        });
 		if(wrapper.attr('data-redirect') == "true" && data.RedirectUrl){
 			window.location = data.RedirectUrl;
 		}else{

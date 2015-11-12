@@ -41,6 +41,11 @@
 	var CampaignMonitorCallBack = {
 		SuccessCallback:function(data, wrapper){
 		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.Success, data.Message);
+		  T3Core.TrackFacebookLeadSignup({
+			currency: '{{ shop.currency }}', 
+			value: 0.00,
+			content_name: CampaignMonitorTrackers.Category
+		  });
 		},
 		CallBackOnError:function(data){
 		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.Error, data.Message);
