@@ -41,7 +41,7 @@
 	var CampaignMonitorCallBack = {
 		SuccessCallback:function(data, wrapper){
 		  T3Core.TrackUserSignUp(CampaignMonitorTrackers.Category, CampaignMonitorTrackers.Actions.Success, data.Message);
-		  T3Core.TrackFacebookLeadSignup({
+		  T3Core.TrackFacebookCompleteRegistration({
 			currency: '{{ shop.currency }}', 
 			value: 0.00,
 			content_name: CampaignMonitorTrackers.Category
