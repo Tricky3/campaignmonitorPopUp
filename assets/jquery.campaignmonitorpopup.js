@@ -43,7 +43,7 @@
                 this.InitCustomEvents();
             },
             InitCustomEvents: function () {
-                $(settings.InnerWrapper, _MainWrapper).append('<a class="ss-backspace popupClose"></a>');
+                $(settings.InnerWrapper, _MainWrapper).append('<a class="popupClose"></a>');
 
                 for (var i = 0; i < settings.CloseSelectors.length; i++) {
                     var element = $(settings.CloseSelectors[i]);
@@ -216,7 +216,7 @@
                         }
 
                         if(settings.HidePopupOnSuccess){
-                            CMP.Hide(false);    
+                            CMP.Hide(false);
                         }
                     }
                 } else {

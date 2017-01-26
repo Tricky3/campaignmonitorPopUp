@@ -1,0 +1,33 @@
+{
+  "name": "campaignMonitorPopup",
+  "version": "1.0.0",
+  "description": "Campaign Monitor Modal Signup",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tricky3/campaignmonitorPopUp.git"
+  },
+  "keywords": [
+    "campaign monitor",
+    "shopify"
+  ],
+  "author": "jayvin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tricky3/campaignmonitorPopUp/issues"
+  },
+  "homepage": "https://github.com/Tricky3/campaignmonitorPopUp#readme",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-imageoptim": "^1.0.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^1.5.3"
+  }
+}
